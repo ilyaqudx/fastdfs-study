@@ -675,6 +675,9 @@ int storage_write_to_sync_ini_file()
 	return 0;
 }
 
+/**
+ * 检查 / 创建存储目录
+ * */
 static int storage_check_and_make_data_dirs()
 {
 	int result;
@@ -833,7 +836,7 @@ static int storage_check_and_make_data_dirs()
 			return result;
 		}
 	}
-
+	//store path count is 1?
 	for (i=0; i<g_fdfs_store_paths.count; i++)
 	{
 		if ((result=storage_make_data_dirs(g_fdfs_store_paths.paths[i], \
@@ -869,7 +872,12 @@ static int storage_check_and_make_data_dirs()
 
 	return 0;
 }
-
+/**
+ * first time run. will create store data path dir
+ *
+ * 256 一级目录
+ * 256 二级目录
+ * */
 static int storage_make_data_dirs(const char *pBasePath, bool *pathCreated)
 {
 	char data_path[MAX_PATH_SIZE];
@@ -1068,7 +1076,7 @@ int storage_func_init(const char *filename, \
 		sleep(1);
 	}
 	*/
-
+	//加载配置参数
 	if ((result=iniLoadFromFile(filename, &iniContext)) != 0)
 	{
 		logError("file: "__FILE__", line: %d, " \

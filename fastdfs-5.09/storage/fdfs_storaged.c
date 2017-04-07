@@ -102,6 +102,7 @@ int main(int argc, char *argv[])
 	trunk_shared_init();
 
 	conf_filename = argv[1];
+	//加载配置
 	if ((result=get_base_path_from_conf_file(conf_filename,
 		g_fdfs_base_path, sizeof(g_fdfs_base_path))) != 0)
 	{
@@ -111,6 +112,7 @@ int main(int argc, char *argv[])
 
 	snprintf(pidFilename, sizeof(pidFilename),
 		"%s/data/fdfs_storaged.pid", g_fdfs_base_path);
+	//执行ACTION  START|RESTART|STOP
 	if ((result=process_action(pidFilename, argv[2], &stop)) != 0)
 	{
 		if (result == EINVAL)

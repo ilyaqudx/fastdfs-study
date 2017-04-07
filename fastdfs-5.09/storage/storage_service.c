@@ -1597,8 +1597,8 @@ int storage_service_init()
 		return result;
 	}
 
-    init_connections = g_max_connections < ALLOC_CONNECTIONS_ONCE ?
-        g_max_connections : ALLOC_CONNECTIONS_ONCE;
+    init_connections = g_max_connections < ALLOC_CONNECTIONS_ONCE ? g_max_connections : ALLOC_CONNECTIONS_ONCE;
+    //g_buff_size 首先取storage.conf中配置的值,如果没有配置使用默认值 64K
 	if ((result=free_queue_init_ex(g_max_connections, init_connections,
                     ALLOC_CONNECTIONS_ONCE, g_buff_size,
                     g_buff_size, sizeof(StorageClientInfo))) != 0)

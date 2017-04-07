@@ -443,7 +443,7 @@ typedef struct {
 
 typedef struct {
 	int count;   //store path count
-	char **paths; //file store paths
+	char **paths; //file store paths  char* -> byte[]  char** byte[][]
 } FDFSStorePaths;
 
 typedef struct {
